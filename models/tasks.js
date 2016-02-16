@@ -8,7 +8,9 @@ module.exports = (sequelize, DataType) => {
     title: {
       type: DataType.STRING,
       allowNull: false,
-      validate: { notEmpty: true }
+      validate: {
+        notEmpty: true
+      }
     },
     done: {
       type: DataType.BOOLEAN,
