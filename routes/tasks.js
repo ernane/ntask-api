@@ -2,8 +2,13 @@ module.exports = app => {
   const Tasks = app.db.models.Tasks;
 
   app.route("/tasks")
+    .all(app.auth.authenticate())
     .get((req, res) => {
-      Tasks.findAll({})
+      Tasks.findAll({
+          where: {
+            user_id: req.user.id
+          }
+        })
         .then(result => res.json(result))
         .catch(error => {
           res.status(412).json({
@@ -13,6 +18,7 @@ module.exports = app => {
     })
 
   .post((req, res) => {
+    req.body.user_id = req.user.id;
     Tasks.create(req.body)
       .then(result => res.json(result))
       .catch(error => {
@@ -23,9 +29,13 @@ module.exports = app => {
   });
 
   app.route("/tasks/:id")
+    .all(app.auth.authenticate())
     .get((req, res) => {
       Tasks.findOne({
-          where: req.params
+          where: {
+            id: req.param.id,
+            user_id: req.param.user.id
+          }
         })
         .then(result => {
           if (result) {
@@ -43,7 +53,10 @@ module.exports = app => {
 
   .put((req, res) => {
     Tasks.update(req.boby, {
-        where: req.params
+        where: {
+          id: req.param.id,
+          user_id: req.param.user.id
+        }
       })
       .then(result => res.sendStatus(204))
       .catch(error => {
@@ -55,7 +68,10 @@ module.exports = app => {
 
   .delete((req, res) => {
     Tasks.destroy({
-        where: req.params
+        where: {
+          id: req.param.id,
+          user_id: req.param.user.id
+        }
       })
       .then(result => res.sendStatus(204))
       .catch(error => {
