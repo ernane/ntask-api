@@ -4,7 +4,8 @@
   "description": "API de gestão de tarefas",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "test": "NODE_ENV=test mocha test/**/*.js"
   },
   "author": "Ernane Sena",
   "dependencies": {
@@ -18,5 +19,10 @@
     "passport-jwt": "^1.2.1",
     "sequelize": "^3.19.2",
     "sqlite3": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   }
 }
