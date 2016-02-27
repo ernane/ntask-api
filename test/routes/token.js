@@ -16,16 +16,6 @@ describe("Routes: Token", () => {
     });
 
     describe("status 200", () => {
-      Users
-        .destroy({
-          where: {}
-        })
-        .then(() => Users.create({
-          name: "John",
-          email: "john@mail.net",
-          password: "12345"
-        }));
-
       it("returns authenticated user token", done => {
         request.post("/token")
           .send({
