@@ -2,10 +2,10 @@ module.exports = {
   database: "ntask_test",
   username: "",
   password: "",
+  logging: false,
   params: {
     dialect: "sqlite",
     storage: "ntask.sqlite",
-    logging: false,
     sync: {
       force: true
     },
