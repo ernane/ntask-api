@@ -4,10 +4,14 @@
   "description": "API de gestão de tarefas",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
-    "test": "NODE_ENV=test mocha test/**/*.js"
+    "start": "npm run apidoc && babel-node index.js",
+    "test": "NODE_ENV=test mocha test/**/*.js",
+    "apidoc": "apidoc -i routes/ -o public/apidoc"
   },
   "author": "Ernane Sena",
+  "apidoc": {
+    "name": "Documentação - Node Task API"
+  },
   "dependencies": {
     "babel": "^5.8.23",
     "bcrypt": "^0.8.5",
@@ -21,6 +25,7 @@
     "sqlite3": "^3.1.1"
   },
   "devDependencies": {
+    "apidoc": "^0.15.1",
     "chai": "^3.3.0",
     "mocha": "^2.3.3",
     "supertest": "^1.1.0"
