@@ -1,3 +1,5 @@
+import logger from "./logger.js";
+
 module.exports = {
   database: "ntask",
   username: "",
@@ -5,7 +7,9 @@ module.exports = {
   params: {
     dialect: "sqlite",
     storage: "ntask.sqlite",
-    logging: false,
+    logging: (sql) => {
+      logger.info(`[${new Date()}] ${sql}`);
+    },
     define: {
       underscored: true
     }
